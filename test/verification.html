@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - StudHub</title>
+    <link rel="stylesheet" href="verification.css">
+</head>
+<body>
+    <div class="verification-container">
+        <h2>Email Verification</h2>
+        <p>Please enter the 6-digit code sent to your email.</p>
+        
+        <form action="/verify" method="POST" class="verification-form">
+            <div class="input-group">
+                <input type="text" name="digit1" maxlength="1" required class="digit-input" oninput="moveFocus(this, 'digit2')">
+                <input type="text" name="digit2" maxlength="1" required class="digit-input" oninput="moveFocus(this, 'digit3')" onfocus="this.select()">
+                <input type="text" name="digit3" maxlength="1" required class="digit-input" oninput="moveFocus(this, 'digit4')" onfocus="this.select()">
+                <input type="text" name="digit4" maxlength="1" required class="digit-input" oninput="moveFocus(this, 'digit5')" onfocus="this.select()">
+                <input type="text" name="digit5" maxlength="1" required class="digit-input" oninput="moveFocus(this, 'digit6')" onfocus="this.select()">
+                <input type="text" name="digit6" maxlength="1" required class="digit-input" onfocus="this.select()">
+            </div>
+            <button type="submit">Verify</button>
+        </form>
+        
+        <p class="resend-text">Didn’t receive the code? <a href="/resend-code">Resend Code</a></p>
+    </div>
+
+    <script>
+        function moveFocus(current, nextElementId) {
+            if (current.value.length === 1) {
+                document.getElementsByName(nextElementId)[0].focus();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudHub</title>
+    <link rel="stylesheet" href="signup.css">
+    <script>
+        // Function to automatically append @gmail.com when the user types "@"
+        function autoAppendGmail(event) {
+            let emailInput = event.target;
+            let emailValue = emailInput.value;
+
+            if (emailValue.includes('@') && !emailValue.includes('@gmail.com')) {
+                emailInput.value = emailValue + 'gmail.com';
+            }
+
+            if (emailValue === '') {
+                emailInput.value = '';
+            }
+        }
+
+        function handleDelete(event) {
+            let emailInput = event.target;
+            let emailValue = emailInput.value;
+
+            if (emailValue.includes('@') && emailValue.slice(-10) === '@gmail.com' && emailValue.length > 10) {
+                emailInput.value = emailValue.slice(0, -10);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="/signup" method="POST">
+            <h1>Sign Up</h1>
+
+            <div class="input-box">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-box">
+                <input type="text" name="faculty" placeholder="Faculty" required>
+            </div>
+
+            <div class="input-box">
+                <input type="text" name="course" placeholder="Course" required>
+            </div>
+
+            <div class="input-box">
+                <input type="date" name="birthdate" required>
+            </div>
+
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Email" required 
+                    oninput="autoAppendGmail(event)" 
+                    onkeydown="handleDelete(event)">
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
